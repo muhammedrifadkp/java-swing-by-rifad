@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Management & Analytics - Simplified</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-start: #f0f9ff;
+            --bg-end: #e0e7ff;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        ul {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .example-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            margin-right: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Data Management & Analytics</h1>
+            <p class="subtitle">A simplified guide for everyone, regardless of your background.</p>
+        </header>
+
+        <!-- Topic 1: Sources of Data -->
+        <article class="section-card">
+            <h2>1. Different Sources of Data</h2>
+            <p>Data comes from everywhere! Think of data as "information" that is collected to help us understand things
+                better.</p>
+            <div class="grid-2">
+                <div>
+                    <h3>Internal Sources (Inside your computer/office)</h3>
+                    <ul>
+                        <li>Your Excel sheets with daily expenses.</li>
+                        <li>Student attendance records in a school.</li>
+                        <li>Sales logs in a shop.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>External Sources (Outside/Internet)</h3>
+                    <ul>
+                        <li>Social Media (Likes, Comments).</li>
+                        <li>Weather Reports from websites.</li>
+                        <li>Stock Market prices.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="example-box">
+                <span class="highlight">Example for Graphic Designers:</span> Collecting popular color palettes from
+                Pinterest is gathering "External Data". Your folder of past client logos is "Internal Data".
+            </div>
+        </article>
+
+        <!-- Topic 2: Rules of Grabbing Data -->
+        <article class="section-card">
+            <h2>2. Rules of Grabbing (Collecting) Data</h2>
+            <p>Just because data is on the internet doesn't mean we can take it blindly. There are rules!</p>
+            <ul>
+                <li><strong>Privacy:</strong> Never collect personal info (passwords, private photos) without
+                    permission.</li>
+                <li><strong>Copyright:</strong> If an image or text says "Copyright", you can't use it as your own.</li>
+                <li><strong>Accuracy:</strong> Always check if the source is reliable. Don't trust fake news!</li>
+                <li><strong>Relevance:</strong> Only collect what you need. Don't hoard useless files.</li>
+            </ul>
+        </article>
+
+        <!-- Topic 3: ChatGPT for Data Management -->
+        <article class="section-card">
+            <h2>3. ChatGPT for Data Management</h2>
+            <p>Data management means organizing, cleaning, and storing your data so it's easy to use. ChatGPT is an
+                excellent assistant for this.</p>
+            <ul>
+                <li><strong>Cleaning Messy Text:</strong> Paste a messy list of names and ask ChatGPT to "Format this as
+                    a clean table".</li>
+                <li><strong>Converting Formats:</strong> Ask it to change a list of items into a CSV format for Excel.
+                </li>
+                <li><strong>Categorizing:</strong> Paste a list of customer feedback and ask "Group these into Positive
+                    and Negative comments".</li>
+            </ul>
+        </article>
+
+        <!-- Topic 4: Introduction to Analytics -->
+        <article class="section-card">
+            <h2>4. Introduction to Analytics</h2>
+            <p><strong>Analytics</strong> is just a fancy word for "finding patterns" or "making sense" of your data.
+            </p>
+            <p>Imagine you have a list of ice cream sales for a year. Analytics is looking at that list and realizing,
+                <em>"Oh! We sell double the amount of Strawberry in July!"</em></p>
+            <div class="example-box">
+                <span class="highlight">Simple Goal:</span> To turn raw numbers into <strong>Insights</strong> (useful
+                facts).
+            </div>
+        </article>
+
+        <!-- Topic 5: Effectiveness of Analytics -->
+        <article class="section-card">
+            <h2>5. Effectiveness of Analytics</h2>
+            <p>Why do we do it? Because it helps us make <strong>smarter decisions</strong>.</p>
+            <ul>
+                <li><strong>Fashion Design:</strong> analyzing past trends helps predict next season's popular colors.
+                </li>
+                <li><strong>Interior Design:</strong> Analyzing room dimensions helps optimize furniture placement.</li>
+                <li><strong>Business:</strong> Knowing which product sells best helps you stock more of it (and make
+                    more money!).</li>
+            </ul>
+        </article>
+
+        <!-- Topic 6: Data Analytics using ChatGPT -->
+        <article class="section-card">
+            <h2>6. Data Analytics using ChatGPT</h2>
+            <p>You don't need to be a math genius. You can upload files to ChatGPT (or paste data) and ask questions in
+                plain English.</p>
+
+            <h3>Try it yourself!</h3>
+            <p>Download these sample files and try asking ChatGPT questions like:</p>
+            <ul>
+                <li><em>"What is the total sales amount?"</em></li>
+                <li><em>"Which student has the highest score?"</em></li>
+                <li><em>"Create a bar chart of sales by region."</em></li>
+            </ul>
+
+            <div style="margin-top: 2rem;">
+                <a href="assets/sample_sales_data.csv" download class="btn">Download Sample Sales Data (CSV)</a>
+                <a href="assets/student_performance_data.csv" download class="btn"
+                    style="background: linear-gradient(to right, #ec4899, #f43f5e);">Download Student Scores (CSV)</a>
+            </div>
+        </article>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Fundamentals - Complete Class Plan</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      border-bottom: 4px solid #2563eb;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      color: #1e40af;
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 1.1em;
+    }
+
+    .overview {
+      background: #eff6ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border-left: 4px solid #2563eb;
+    }
+
+    .overview h3 {
+      color: #1e40af;
+      margin-bottom: 10px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      background: #1e40af;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+
+    .time-segment {
+      background: #f8fafc;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid #10b981;
+      border-radius: 4px;
+    }
+
+    .time-segment h4 {
+      color: #059669;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+
+    .prompt-box {
+      background: #fef3c7;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 10px 0;
+      border-left: 4px solid #f59e0b;
+      font-family: "Courier New", monospace;
+    }
+
+    .bad-prompt {
+      background: #fee2e2;
+      border-left-color: #ef4444;
+    }
+
+    .good-prompt {
+      background: #d1fae5;
+      border-left-color: #10b981;
+    }
+
+    .teaching-tip {
+      background: #e0e7ff;
+      padding: 12px;
+      border-radius: 6px;
+      margin: 10px 0;
+      border-left: 4px solid #6366f1;
+    }
+
+    .teaching-tip strong {
+      color: #4338ca;
+    }
+
+    .key-point {
+      background: #fef3c7;
+      padding: 12px;
+      border-radius: 6px;
+      margin: 10px 0;
+      border-left: 4px solid #f59e0b;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .example-card {
+      background: #f1f5f9;
+      padding: 15px;
+      border-radius: 6px;
+      border-top: 3px solid #2563eb;
+    }
+
+    .example-card h5 {
+      color: #1e40af;
+      margin-bottom: 8px;
+    }
+
+    ul,
+    ol {
+      margin-left: 25px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .mistake-fix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .mistake {
+      background: #fee2e2;
+      padding: 12px;
+      border-radius: 6px;
+    }
+
+    .fix {
+      background: #d1fae5;
+      padding: 12px;
+      border-radius: 6px;
+    }
+
+    .golden-rules {
+      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .golden-rules h4 {
+      color: #92400e;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .golden-rules ol {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #78350f;
+    }
+
+    .homework {
+      background: #f0fdf4;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px dashed #10b981;
+      margin: 20px 0;
+    }
+
+    .button-container {
+      text-align: center;
+      margin: 30px 0;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+
+    .download-btn {
+      background: #2563eb;
+      color: white;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .container {
+        box-shadow: none;
+        max-width: 100%;
+      }
+
+      .button-container {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .mistake-fix {
+        grid-template-columns: 1fr;
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎓 ChatGPT Fundamentals</h1>
+    </div>
+
+    <div class="section">
+      <!-- <div class="section-title">⏰ Time-Wise Lesson Plan</div> -->
+
+      <div class="time-segment">
+        <h4>
+          SEGMENT 1: Introduction & ChatGPT Basics (0:00-0:25) - 25 minutes
+        </h4>
+
+        <h5 style="color: #059669; margin-top: 15px">
+          0:00-0:10 | Icebreaker & Context Setting
+        </h5>
+        <p><strong>Opening Statement:</strong></p>
+        <p style="font-style: italic; margin: 10px 0">
+          "Imagine you have a super-smart assistant who knows about fashion
+          trends, interior design principles, architectural codes, data
+          analysis, and coding—all in one. That's ChatGPT. But here's the
+          catch: it only works as well as you can communicate with it. Today,
+          you'll learn to speak its language."
+        </p>
+
+        <p><strong>Quick Poll Activity:</strong></p>
+        <ul>
+          <li>Who has used ChatGPT before?</li>
+          <li>What did you ask it?</li>
+          <li>Were you happy with the answer?</li>
+        </ul>
+
+        <!-- <div class="teaching-tip">
+            <strong>Teaching Tip:</strong> Acknowledge that many got vague or
+            useless answers—that's normal! Today changes that.
+          </div> -->
+
+        <h5 style="color: #059669; margin-top: 20px">
+          0:10-0:25 | What is ChatGPT? The Fundamentals
+        </h5>
+
+        <p><strong>Explain in Simple Terms:</strong></p>
+        <ol>
+          <li>
+            <strong>What it is:</strong> A text-based AI that generates
+            responses based on patterns learned from millions of texts
+          </li>
+          <li>
+            <strong>What it's NOT:</strong> A search engine, a mind reader, or
+            a person
+          </li>
+          <li>
+            <strong>How it works:</strong> You give instructions (prompts) →
+            It generates text → You refine
+          </li>
+        </ol>
+
+        <div class="key-point">
+          <strong>Key Concept: The "Prompt" is Everything</strong><br />
+          <strong>Analogy:</strong><br />
+          Bad prompt = Telling a taxi driver "Take me somewhere nice" (vague,
+          unhelpful)<br />
+          Good prompt = "Take me to the nearest Italian restaurant open now
+          under $30/person" (specific, clear)
+        </div>
+
+        <p><strong>Live Demo 1: Bad vs Good Prompts</strong></p>
+        <div class="prompt-box bad-prompt">
+          ❌ BAD: "Tell me about design"
+        </div>
+        <div class="prompt-box good-prompt">
+          ✅ GOOD: "Explain the difference between minimalist and maximalist
+          interior design in 3 simple points"
+        </div>
+
+        <!-- <div class="teaching-tip">
+            <strong>What to Show:</strong> Type both prompts live and display
+            responses side-by-side. Point out: Specificity = Better results
+          </div> -->
+      </div>
+
+      <div class="time-segment">
+        <h4>SEGMENT 2: Open Domain Conversations (0:25-0:50) - 25 minutes</h4>
+
+        <h5 style="color: #059669; margin-top: 15px">
+          0:25-0:35 | Understanding "Open Domain"
+        </h5>
+        <p><strong>Simple Explanation:</strong></p>
+        <p style="font-style: italic">
+          "Open Domain means ChatGPT can talk about almost anything—from
+          fashion to philosophy to Python coding. But YOU need to tell it WHAT
+          domain to focus on."
+        </p>
+
+        <div class="key-point">
+          <strong>The 3 Rules of Open Domain Prompting:</strong>
+          <ol>
+            <li>
+              <strong>Specify Your Field</strong> - Tell it you're a fashion
+              designer, architect, etc.
+            </li>
+            <li>
+              <strong>Define the Output</strong> - What do you want? Ideas?
+              Steps? Comparisons?
+            </li>
+            <li>
+              <strong>Set Boundaries</strong> - Length, style, complexity
+            </li>
+          </ol>
+        </div>
+
+        <p><strong>Live Demo 2: Field-Specific Examples</strong></p>
+        <div class="prompt-box bad-prompt">
+          ❌ GENERIC: "Give me color ideas"
+        </div>
+        <div class="prompt-box good-prompt">
+          ✅ FASHION: "I'm a fashion designer creating a summer collection.
+          Suggest 5 color palettes that work for breathable fabrics and appeal
+          to ages 25-35."
+        </div>
+        <div class="prompt-box good-prompt">
+          ✅ INTERIOR: "I'm designing a small bedroom (10x12 feet). Suggest 3
+          color schemes that make the space feel larger and calming."
+        </div>
+        <div class="prompt-box good-prompt">
+          ✅ ARCHITECTURE: "I'm designing a modern office building facade.
+          Suggest exterior color combinations that are professional but not
+          boring, considering sunlight and heat absorption."
+        </div>
+
+        <h5 style="color: #059669; margin-top: 20px">
+          0:35-0:50 | Student Activity: "Fix the Prompt"
+        </h5>
+        <p>
+          <strong>Instructions:</strong> Give students these BAD prompts. Have
+          them rewrite in 3 minutes.
+        </p>
+
+        <div class="example-grid">
+          <div class="example-card">
+            <h5>Bad Prompts to Fix:</h5>
+            <ol>
+              <li>"Help me with my project"</li>
+              <li>"What's trending?"</li>
+              <li>"Make it better"</li>
+              <li>"Explain Python"</li>
+              <li>"Design something cool"</li>
+            </ol>
+          </div>
+          <div class="example-card">
+            <h5>Sample Good Rewrites:</h5>
+            <p style="font-size: 0.9em">
+              <strong>1.</strong> "I'm creating an AutoCAD drawing of a
+              residential floor plan. What are the standard dimensions for a
+              master bedroom with attached bathroom?"
+            </p>
+            <p style="font-size: 0.9em">
+              <strong>2.</strong> "What are the top 3 fashion trends for
+              spring 2025 for sustainable, eco-friendly clothing brands?"
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="teaching-tip">
+            <strong>Teaching Tip:</strong> Walk around, review student rewrites,
+            share 2-3 good examples with the class.
+          </div> -->
+      </div>
+
+      <div class="time-segment">
+        <h4>SEGMENT 3: Contextual Understanding (0:50-1:20) - 30 minutes</h4>
+
+        <h5 style="color: #059669; margin-top: 15px">
+          0:50-1:00 | What is "Context" in ChatGPT?
+        </h5>
+        <p><strong>Simple Explanation:</strong></p>
+        <p style="font-style: italic">
+          "Context means giving ChatGPT background information so it
+          understands YOUR specific situation. It's like the difference
+          between asking a stranger vs asking a friend who knows your story."
+        </p>
+
+        <div class="key-point">
+          <strong>The Context Formula:</strong><br />
+          Who you are + What you need + Why you need it + Any constraints
+        </div>
+
+        <p><strong>Example Breakdown:</strong></p>
+        <div class="prompt-box good-prompt" style="line-height: 1.8">
+          "I'm a full-stack developer building an e-commerce website.<br />
+          <span style="color: #059669">[WHO YOU ARE]</span><br /><br />
+          I need to create a user login system that's secure but easy for
+          non-tech users.<br />
+          <span style="color: #059669">[WHAT YOU NEED]</span><br /><br />
+          This is for a small handmade crafts business with about 100
+          customers.<br />
+          <span style="color: #059669">[WHY/CONTEXT]</span><br /><br />
+          I'm using React for frontend and Node.js for backend.<br />
+          <span style="color: #059669">[CONSTRAINTS]</span><br /><br />
+          Explain the steps in simple terms."<br />
+          <span style="color: #059669">[OUTPUT STYLE]</span>
+        </div>
+
+        <h5 style="color: #059669; margin-top: 20px">
+          1:00-1:15 | Live Demo 3: Building Context Through Conversation
+        </h5>
+        <p>
+          <strong>Demo Script - Show how ChatGPT "remembers" context:</strong>
+        </p>
+
+        <div class="prompt-box">
+          <strong>Prompt 1:</strong> "I'm designing a boutique hotel lobby.
+          What style should I consider?"<br />
+          <span style="color: #64748b; font-style: italic">[ChatGPT gives general answer]</span>
+        </div>
+        <div class="prompt-box">
+          <strong>Prompt 2:</strong> "The hotel is in a coastal town, targets
+          luxury travelers, and the building is historic from 1920."<br />
+          <span style="color: #64748b; font-style: italic">[ChatGPT refines its answer]</span>
+        </div>
+        <div class="prompt-box">
+          <strong>Prompt 3:</strong> "The budget is limited. Suggest
+          cost-effective ways to achieve luxury without expensive
+          renovations."<br />
+          <span style="color: #64748b; font-style: italic">[ChatGPT gets very specific]</span>
+        </div>
+
+        <div class="teaching-tip">
+          <strong>Key Teaching Point:</strong> Each prompt adds layers of
+          context. ChatGPT uses ALL previous messages to shape its
+          response.<br /><br />
+          <strong>Common Mistake:</strong> Starting a NEW chat for every
+          related question instead of continuing the same conversation.
+        </div>
+
+        <h5 style="color: #059669; margin-top: 20px">
+          1:15-1:20 | Context Mistakes to Avoid
+        </h5>
+
+        <div class="mistake-fix">
+          <div class="mistake">
+            <strong>Mistake 1: Assuming it knows your work</strong><br />
+            ❌ "Update the design"
+          </div>
+          <div class="fix">
+            <strong>Better:</strong><br />
+            ✅ "In the fashion sketch we discussed with the asymmetric
+            neckline, update it to include flutter sleeves."
+          </div>
+        </div>
+
+        <div class="mistake-fix">
+          <div class="mistake">
+            <strong>Mistake 2: No background info</strong><br />
+            ❌ "Is this a good idea?"
+          </div>
+          <div class="fix">
+            <strong>Better:</strong><br />
+            ✅ "I'm planning dark wood flooring in a north-facing room with
+            little natural light. For a cozy bedroom, is this good?"
+          </div>
+        </div>
+
+        <h5 style="color: #059669; margin-top: 20px">
+          1:20-1:30 | Student Challenge: "Add Context"
+        </h5>
+        <p>
+          <strong>Give students this bare prompt:</strong> "How do I make this
+          better?"
+        </p>
+        <p>
+          <strong>Instructions:</strong> Add context to make this useful for
+          YOUR field. 5 minutes.
+        </p>
+
+        <div class="example-grid">
+          <div class="example-card">
+            <h5>Fashion Example:</h5>
+            <p>
+              "I designed a dress with bold geometric patterns. My target is
+              professional women aged 30-45. How do I make this more
+              workplace-appropriate while keeping it stylish?"
+            </p>
+          </div>
+          <div class="example-card">
+            <h5>Power BI Example:</h5>
+            <p>
+              "I created a sales dashboard but stakeholders say it's
+              cluttered. How do I make this better for executives who only
+              want top-level KPIs at a glance?"
+            </p>
+          </div>
+          <div class="example-card">
+            <h5>Architecture Example:</h5>
+            <p>
+              "I designed a house with large windows for natural light, but
+              the client worries about privacy from the street. How do I make
+              this better without compromising the aesthetic?"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="time-segment">
+        <h4>SEGMENT 4: Dialog Control (1:30-1:50) - 20 minutes</h4>
+
+        <h5 style="color: #059669; margin-top: 15px">
+          1:30-1:40 | Taking Control of the Conversation
+        </h5>
+        <p><strong>Simple Explanation:</strong></p>
+        <p style="font-style: italic">
+          "Dialog Control means YOU are the boss. You tell ChatGPT how to
+          respond—length, tone, format, everything."
+        </p>
+
+        <div class="key-point">
+          <strong>The Control Commands:</strong>
+          <ol>
+            <li>
+              <strong>Length Control:</strong> "Explain in one paragraph" /
+              "Give me 5 bullet points"
+            </li>
+            <li>
+              <strong>Tone Control:</strong> "Explain like I'm 10" / "Use
+              professional language"
+            </li>
+            <li>
+              <strong>Format Control:</strong> "Create a table" / "Give a
+              step-by-step checklist"
+            </li>
+            <li>
+              <strong>Perspective Control:</strong> "Respond as a senior
+              architect reviewing my work"
+            </li>
+          </ol>
+        </div>
+
+        <h5 style="color: #059669; margin-top: 20px">
+          1:40-1:50 | Live Demo 4: Same Question, Different Controls
+        </h5>
+        <p><strong>Base Question:</strong> "Explain responsive web design"</p>
+
+        <div class="prompt-box good-prompt">
+          <strong>Control 1:</strong> "Explain responsive web design in
+          exactly 3 sentences for someone who's never coded."
+        </div>
+        <div class="prompt-box good-prompt">
+          <strong>Control 2:</strong> "Explain responsive web design as a
+          step-by-step guide with code examples for a beginner full-stack
+          developer."
+        </div>
+        <div class="prompt-box good-prompt">
+          <strong>Control 3:</strong> "Create a comparison table: Responsive
+          vs Adaptive vs Mobile-First design. Include pros, cons, and when to
+          use each."
+        </div>
+        <div class="prompt-box good-prompt">
+          <strong>Control 4:</strong> "Explain responsive web design using an
+          analogy related to fashion design (my background)."
+        </div>
+
+        <!-- <div class="teaching-tip">
+            <strong>Teaching Point:</strong> Type each one live and show
+            responses. The SAME information, presented completely differently
+            based on YOUR control.
+          </div> -->
+      </div>
+
+      <div class="time-segment">
+        <h4>SEGMENT 5: Practice & Wrap-Up (1:50-2:00) - 10 minutes</h4>
+
+        <h5 style="color: #059669; margin-top: 15px">
+          1:50-1:55 | Quick Recap Challenge
+        </h5>
+        <p><strong>Game: "Prompt Makeover"</strong></p>
+        <p>
+          Show this terrible prompt:
+          <span style="background: #fee2e2; padding: 2px 8px; border-radius: 4px">"Tell me stuff about colors"</span>
+        </p>
+
+        <p style="margin-top: 10px">
+          <strong>Ask students to shout out improvements:</strong>
+        </p>
+        <ul>
+          <li>Add your field!</li>
+          <li>Add your project!</li>
+          <li>Specify what you want!</li>
+          <li>Control the format!</li>
+        </ul>
+
+        <p style="margin-top: 15px">
+          <strong>Final version (crowdsourced):</strong>
+        </p>
+        <div class="prompt-box good-prompt">
+          "I'm an interior designer working on a wellness spa. Explain color
+          psychology for creating a calming, restorative environment. Present
+          as 5 specific color choices with the emotion each evokes. Keep it to
+          one paragraph per color."
+        </div>
+
+        <h5 style="color: #059669; margin-top: 20px">
+          1:55-2:00 | Key Takeaways & Next Steps
+        </h5>
+
+        <div class="golden-rules">
+          <h4>🌟 The 4 Golden Rules</h4>
+          <ol>
+            <li><strong>Be Specific</strong> - No vague questions</li>
+            <li>
+              <strong>Give Context</strong> - Background info = better answers
+            </li>
+            <li>
+              <strong>Take Control</strong> - Dictate length, tone, format
+            </li>
+            <li>
+              <strong>Iterate</strong> - First answer not perfect? Refine your
+              prompt
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">💼 Field-Specific Prompt Examples</div>
+
+      <div class="example-grid">
+        <div class="example-card">
+          <h5>Fashion Design</h5>
+          <div class="prompt-box good-prompt" style="font-size: 0.85em">
+            "I'm designing a sustainable streetwear collection for Gen Z.
+            Suggest 5 fabric choices that are eco-friendly, affordable, and
+            have an edgy aesthetic. Include care instructions for each."
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h5>Interior Design</h5>
+          <div class="prompt-box good-prompt" style="font-size: 0.85em">
+            "I'm redesigning a 150 sq ft studio apartment for a young
+            professional. Suggest a layout that separates sleeping, working,
+            and living zones without physical walls. Provide furniture
+            dimensions."
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h5>Architecture</h5>
+          <div class="prompt-box good-prompt" style="font-size: 0.85em">
+            "I'm designing a 3-story commercial building in a hot climate.
+            Explain passive cooling strategies I can incorporate in the design
+            phase. Include specific architectural features."
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h5>AutoCAD</h5>
+          <div class="prompt-box good-prompt" style="font-size: 0.85em">
+            "I'm creating a site plan in AutoCAD for a residential
+            subdivision. What layers should I create, and what should I put on
+            each layer? Organize by priority."
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h5>Power BI</h5>
+          <div class="prompt-box good-prompt" style="font-size: 0.85em">
+            "I'm creating a sales dashboard in Power BI for monthly executive
+            reviews. What are the 5 most important KPIs I should highlight?
+            For each, suggest the best visualization type and why."
+          </div>
+        </div>
+
+        <div class="example-card">
+          <h5>Full-Stack Development</h5>
+          <div class="prompt-box good-prompt" style="font-size: 0.85em">
+            "I'm building a task management app using React and Node.js.
+            Explain the flow of data from when a user creates a task to when
+            it's saved in the database. Use simple terms."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🚫 Common Mistakes & How to Fix Them</div>
+
+      <div style="margin-bottom: 20px">
+        <h5 style="color: #ef4444; margin-bottom: 10px">
+          Mistake 1: The Vague Opener
+        </h5>
+        <div class="mistake-fix">
+          <div class="mistake">❌ "Help me with my design"</div>
+          <div class="fix">
+            ✅ "I'm creating a logo for an organic skincare brand. The
+            aesthetic is minimalist and nature-inspired. Suggest 3 design
+            directions with color palettes."
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 20px">
+        <h5 style="color: #ef4444; margin-bottom: 10px">
+          Mistake 2: No Role Context
+        </h5>
+        <div class="mistake-fix">
+          <div class="mistake">❌ "What's the best way to present data?"</div>
+          <div class="fix">
+            ✅ "I'm a Power BI analyst presenting quarterly results to
+            non-technical executives. What's the best way to present data so
+            they grasp key insights in under 5 minutes?"
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 20px">
+        <h5 style="color: #ef4444; margin-bottom: 10px">
+          Mistake 3: Expecting Mind Reading
+        </h5>
+        <div class="mistake-fix">
+          <div class="mistake">❌ "Make it more modern"</div>
+          <div class="fix">
+            ✅ "The Victorian-era building I'm renovating has ornate details.
+            I want to honor the history while adding modern functionality.
+            Suggest 3 ways to blend old and new."
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 20px">
+        <h5 style="color: #ef4444; margin-bottom: 10px">
+          Mistake 4: Not Controlling Output
+        </h5>
+        <div class="mistake-fix">
+          <div class="mistake">❌ "Explain MVC architecture"</div>
+          <div class="fix">
+            ✅ "Explain MVC architecture in 5 bullet points using a restaurant
+            analogy (I'm new to coding)."
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 20px">
+        <h5 style="color: #ef4444; margin-bottom: 10px">
+          Mistake 5: One-Shot Prompting
+        </h5>
+        <div class="mistake-fix">
+          <div class="mistake">❌ Giving up after one mediocre response</div>
+          <div class="fix">
+            ✅ Following up: "That's helpful, but too technical. Simplify it
+            and focus only on the practical steps I need to take this week."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📝 Homework & Practice Tasks</div>
+
+      <div class="homework">
+        <h4>🎯 Assignment (Choose ONE)</h4>
+        <ol>
+          <li>
+            <strong>Design Students:</strong><br />
+            Take one of your existing designs (fashion, interior,
+            architecture). Write a BAD prompt and then rewrite it into a GOOD
+            prompt using:
+            <ul>
+              <li>Your role</li>
+              <li>Project context</li>
+              <li>Clear output format</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Power BI / Data Students:</strong><br />
+            Create a prompt to analyze a dataset and ask ChatGPT to:
+            <ul>
+              <li>Suggest KPIs</li>
+              <li>Recommend visualizations</li>
+              <li>Simplify insights for management</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Full-Stack / Technical Students:</strong><br />
+            Write a prompt asking ChatGPT to explain a concept you already
+            know (like authentication, API flow, database design) in a way a
+            non-technical client would understand.
+          </li>
+        </ol>
+
+        <p style="margin-top: 15px">
+          <strong>Rule:</strong> You must use at least
+          <u>3 control instructions</u>
+          (tone, format, role, or length).
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

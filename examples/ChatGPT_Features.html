@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Features - Data & Coding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f59e0b;
+            /* Amber */
+            --secondary: #fbbf24;
+            --accent: #d97706;
+            --bg-start: #fffbeb;
+            --bg-end: #fef3c7;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .analogy-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .analogy-title {
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .step-box {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>ChatGPT Features Breakdown</h1>
+            <p class="subtitle">Deep Dive: Analysing Data & Fixing Code</p>
+        </header>
+
+        <!-- Topic 1: Analyzing Complex Data -->
+        <article class="section-card">
+            <h2>1. Analysing Complex Data</h2>
+            <p>Imagine you have a <strong>Gigantic Book</strong> with 10,000 pages of numbers. It would take you years
+                to read, right? But for ChatGPT, it's like reading a 1-page flyer. It takes seconds.</p>
+
+            <div class="analogy-box">
+                <span class="analogy-title">The "Lego" Analogy (For Kids)</span>
+                <p>Imagine a whole room filled with millions of mixed-up Lego bricks (Red, Blue, Green, Big, Small).
+                    <br>
+                    <strong>You</strong> would take days to sort them by color.<br>
+                    <strong>ChatGPT</strong> is like a super-robot hand that can snap its fingers, and instantly all the
+                    red bricks fly into one bucket, blue into another, and it even builds a castle for you!
+                </p>
+            </div>
+
+            <h3>How it works deeply (Simplified logic):</h3>
+            <p>Computers don't get "tired". They scan row-by-row. When you give ChatGPT a file, it turns it into a
+                "structure" in its brain.</p>
+            <div class="step-box">
+                <span class="step-number">1</span> <strong>Ingestion:</strong> It reads every single cell in your Excel
+                sheet.
+            </div>
+            <div class="step-box">
+                <span class="step-number">2</span> <strong>Pattern Recognition:</strong> It notices things like "Hey,
+                sales in 'Region South' are always low in December."
+            </div>
+            <div class="step-box">
+                <span class="step-number">3</span> <strong>Transformation:</strong> It runs invisible math formulas to
+                give you the answer.
+            </div>
+
+            <h3>Try it Yourself!</h3>
+            <p>I have created a <strong>Complex Global Sales File</strong>. It has messy data, many columns, and
+                confusing numbers. Download it and ask ChatGPT: <em>"Analyze this file. What are the top 3 selling
+                    products and which region has the lowest profit?"</em></p>
+
+            <center>
+                <a href="assets/complex_global_sales.csv" download class="btn">Download Complex Data (CSV)</a>
+            </center>
+        </article>
+
+        <!-- Topic 2: Fixing Bugs & Crashes -->
+        <article class="section-card">
+            <h2>2. Fixing Bugs & Crashes</h2>
+            <p>In the computer world, a "<strong>Bug</strong>" is just a mistake in the instructions you gave the
+                computer. A "<strong>Crash</strong>" is when the computer gets so confused by your mistake that it stops
+                working.</p>
+
+            <div class="analogy-box">
+                <span class="analogy-title">The "Computer Doctor" Analogy</span>
+                <p>Think of your code like a <strong>human body</strong>.<br>
+                    When you have a Bug, it's like having a broken bone. You know something hurts, but you can't
+                    walk.<br>
+                    <strong>ChatGPT is the X-Ray Machine and the Doctor.</strong><br>
+                    It scans your code, points to the exact line (the broken bone), and says: <em>"Here is the crack,
+                        and here is the plaster to fix it."</em>
+                </p>
+            </div>
+
+            <h3>Why is it so good at this?</h3>
+            <p>ChatGPT has read <strong>billions</strong> of lines of code from the internet. It has seen every mistake
+                a human can possibly make.</p>
+            <ul>
+                <li>It knows you forgot to close a bracket `)` because it has seen that mistake 1 million times.</li>
+                <li>It knows you misspelled `print` as `prnit` because it knows the dictionary of code.</li>
+            </ul>
+
+            <div style="margin-top: 2rem;">
+                <h3>The Challenge!</h3>
+                <p>I wrote a Python script called <strong>"Buggy Calculator"</strong>. It is FULL of mistakes. It will
+                    crash if you run it.</p>
+                <p><strong>Your Mission:</strong> Download it, upload it to ChatGPT, and say: <em>"Fix this code and
+                        explain what was wrong."</em></p>
+
+                <center>
+                    <a href="assets/buggy_calculator.py" download class="btn"
+                        style="background: linear-gradient(to right, #ef4444, #b91c1c);">Download Buggy Code (.py)</a>
+                </center>
+            </div>
+        </article>
+
+    </div>
+
+</body>
+
+</html>
