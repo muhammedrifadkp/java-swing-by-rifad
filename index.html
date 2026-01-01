@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Swing: A Comprehensive Guide</title>
+    <style>
+        /* BASE RESET & TYPOGRAPHY */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #2563eb;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #1e40af;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 1.2em;
+        }
+
+        /* NAVIGATION GRID */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-bottom: 40px;
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .toc-grid a {
+            text-decoration: none;
+            color: #1e40af;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: color 0.2s;
+        }
+
+        .toc-grid a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            background: #1e40af;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        /* MODULES & CARDS */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .component-card {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 20px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            align-items: start;
+        }
+
+        .component-info h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .component-info p {
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        /* CODE BOX */
+        /* CODE BOX (VS Code Dark) */
+        .code-box {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            font-family: "Consolas", "Monaco", monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            white-space: pre;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+
+        .keyword {
+            color: #569cd6;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        /* VISUAL MOCKUP AREA */
+        .visual-preview {
+            background: #e2e2e2;
+            padding: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            position: relative;
+            border: 1px solid #ccc;
+            flex-direction: column;
+        }
+
+        .visual-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #64748b;
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 6px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* =========================================
+           JAVA SWING VISUAL SIMULATION (CSS MOCKUPS)
+           These classes mimic the "Metal" / Classic Windows look
+           ========================================= */
+
+        /* General Swing Component Border */
+        .swing-comp {
+            font-family: "Tahoma", sans-serif;
+            font-size: 13px;
+            cursor: default;
+            user-select: none;
+        }
+
+        /* Button */
+        .swing-btn {
+            background: linear-gradient(to bottom, #f0f0f0 5%, #e1e1e1 100%);
+            border: 1px solid #707070;
+            border-radius: 2px;
+            padding: 4px 14px;
+            color: #000;
+            box-shadow: inset 1px 1px 0px #fff;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .swing-btn:active {
+            background: #dcdcdc;
+            box-shadow: inset 1px 1px 2px #aaa;
+            transform: translate(1px, 1px);
+        }
+
+        /* Text Field */
+        .swing-field {
+            background: #fff;
+            border: 1px solid #7f9db9;
+            padding: 3px 5px;
+            width: 150px;
+            color: #000;
+            box-shadow: inset 1px 1px 2px #eee;
+            display: inline-block;
+        }
+
+        /* Checkbox */
+        .swing-check {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .swing-check-box {
+            width: 13px;
+            height: 13px;
+            background: #fff;
+            border: 1px solid #1c5180;
+            display: inline-block;
+            position: relative;
+        }
+
+        .swing-check.checked .swing-check-box::after {
+            content: "✓";
+            position: absolute;
+            top: -3px;
+            left: 1px;
+            color: #000;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* Radio */
+        .swing-radio {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .swing-radio-circle {
+            width: 13px;
+            height: 13px;
+            background: #fff;
+            border: 1px solid #1c5180;
+            border-radius: 50%;
+            position: relative;
+            display: inline-block;
+        }
+
+        .swing-radio.checked .swing-radio-circle::after {
+            content: "";
+            width: 5px;
+            height: 5px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+        }
+
+        /* List */
+        .swing-list {
+            border: 1px solid #828790;
+            background: #fff;
+            width: 120px;
+            height: 80px;
+            overflow-y: scroll;
+            padding: 2px;
+        }
+
+        .swing-list-item {
+            padding: 2px 4px;
+        }
+
+        .swing-list-item.selected {
+            background: #3399ff;
+            color: white;
+            border: 1px dotted #fff;
+        }
+
+        /* Choice (ComboBox) */
+        .swing-choice {
+            border: 1px solid #7f9db9;
+            background: linear-gradient(to bottom, #fff 0%, #e6e6e6 100%);
+            padding: 2px 20px 2px 4px;
+            width: 140px;
+            position: relative;
+            font-size: 12px;
+        }
+
+        .swing-choice::after {
+            content: "▼";
+            position: absolute;
+            right: 4px;
+            top: 2px;
+            font-size: 10px;
+            color: #555;
+        }
+
+        /* Scrollbar (Fake) */
+        .swing-scrollbar-demo {
+            width: 20px;
+            height: 100px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .swing-thumb {
+            width: 18px;
+            height: 40px;
+            background: #cdcdcd;
+            border: 1px solid #fff;
+            border-right-color: #555;
+            border-bottom-color: #555;
+            position: absolute;
+            top: 20px;
+            left: 0;
+            box-shadow: inset 1px 1px #fff;
+        }
+
+        .swing-arrow {
+            width: 100%;
+            height: 18px;
+            background: #cdcdcd;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            box-shadow: inset 1px 1px #fff;
+            cursor: pointer;
+        }
+
+        /* Menu Bar */
+        .swing-menubar {
+            width: 100%;
+            background: #f0f0f0;
+            border-bottom: 1px solid #999;
+            display: flex;
+            padding: 2px;
+        }
+
+        .swing-menuitem {
+            padding: 2px 8px;
+            cursor: default;
+        }
+
+        .swing-menuitem:hover {
+            background: #3399ff;
+            color: white;
+        }
+
+        /* LAYOUT VISUALS */
+        .layout-container {
+            border: 1px dashed #999;
+            width: 200px;
+            height: 150px;
+            background: #fff;
+            padding: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .layout-comp {
+            background: #d1e7dd;
+            border: 1px solid #0f5132;
+            color: #0f5132;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* Layout Specifics */
+        .layout-border {
+            display: grid;
+            grid-template-rows: 25px 1fr 25px;
+            grid-template-columns: 35px 1fr 35px;
+            height: 100%;
+            width: 100%;
+            gap: 1px;
+        }
+
+        .north {
+            grid-area: 1 / 1 / 2 / 4;
+        }
+
+        .south {
+            grid-area: 3 / 1 / 4 / 4;
+        }
+
+        .west {
+            grid-area: 2 / 1 / 3 / 2;
+        }
+
+        .east {
+            grid-area: 2 / 3 / 3 / 4;
+        }
+
+        .center {
+            grid-area: 2 / 2 / 3 / 3;
+        }
+
+        .layout-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-content: flex-start;
+            justify-content: center;
+        }
+
+        .layout-flow .layout-comp {
+            width: 50px;
+            height: 25px;
+        }
+
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 5px;
+            height: 100%;
+        }
+
+        .layout-box {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            height: 100%;
+        }
+
+        .layout-box .layout-comp {
+            width: 100%;
+            flex: 1;
+        }
+
+        .layout-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .layout-card .layout-comp {
+            width: 100%;
+            height: 100%;
+            background: #fff3cd;
+            color: #664d03;
+            border-color: #ffecb5;
+        }
+
+        .layout-spring {
+            position: relative;
+            height: 100%;
+        }
+
+        .layout-spring .c1 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 60px;
+            height: 30px;
+        }
+
+        .layout-spring .c2 {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 60px;
+            height: 30px;
+        }
+
+        .spring-line {
+            position: absolute;
+            border-top: 2px dotted #aaa;
+        }
+
+        /* UTILS */
+        @media (max-width: 900px) {
+            .component-card {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-preview {
+                order: -1;
+                min-height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>☕ Java Swing Components & Layouts 
+                <span style="font-size: 0.5em; color: #64748b; display: block; margin-top: 5px;">A Visual Guide to Swing's Building Blocks</span></h1>
+            <p>- By Muhammed Rifad KP</p>
+        </div>
+
+        <div class="toc-grid">
+            <a href="#starter">Starter Template</a>
+            <a href="#components">Section 1: Components</a>
+            <a href="#layouts">Section 2: Layout Managers</a>
+            <a href="#project">Section 3: Project</a>
+            <a href="#extras">Section 4: Quiz & Glossary</a>
+        </div>
+
+        <!-- ========================================================
+         SECTION 0: STARTER CODE
+         ======================================================== -->
+        <div id="starter" class="section">
+            <div class="section-title" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">🚀 Starter
+                Code Template</div>
+            <p>Copy this class into your IDE. You can paste any example from below into the marked area to run it!</p>
+
+            <div class="code-box">
+                <pre><code>import javax.swing.*;
+import java.awt.*;
+
+public class SwingRunner {
+    public static void main(String[] args) {
+        <span class="comment">// 1. Setup the Frame</span>
+        JFrame frame = <span class="keyword">new</span> JFrame(<span class="string">"Swing Playground"</span>);
+        frame.setSize(<span class="string">400</span>, <span class="string">300</span>);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(<span class="keyword">null</span>);
+
+        <span class="comment">// 2. Setup the Panel (Container)</span>
+        JPanel panel = <span class="keyword">new</span> JPanel();
+        panel.setLayout(<span class="keyword">new</span> FlowLayout()); <span class="comment">// Standard Flow Layout</span>
+
+        <span class="comment">// ==========================================</span>
+        <span class="comment">// ⬇️ PASTE EXAMPLE CODE HERE ⬇️</span>
+        <span class="comment">// ==========================================</span>
+
+        <span class="comment">// Example:</span>
+        <span class="comment">// JButton btn = new JButton("Click Me");</span>
+        <span class="comment">// panel.add(btn);</span>
+
+        <span class="comment">// ==========================================</span>
+
+        <span class="comment">// 3. Add Panel to Frame & Show</span>
+        frame.add(panel);
+        frame.setVisible(<span class="keyword">true</span>);
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- ========================================================
+         SECTION 1: SWING COMPONENTS (Detailed Examples)
+         ======================================================== -->
+        <div id="components" class="section">
+            <div class="section-title">1. Swing Graphical Components</div>
+            <p style="margin-bottom: 20px;">Detailed examples for creating and configuring core components.</p>
+
+            <div class="topic-grid">
+
+                <!-- 1. Text Field -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>TextField</h3>
+                        <p><code>JTextField</code></p>
+                        <p>A single-line text box for user input.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic creation</span>
+                            JTextField nameField = <span class="keyword">new</span> JTextField(<span
+                                class="string">20</span>);
+                            panel.add(nameField);
+                        </div>
+
+                        <p><strong>2. Interactivity (Action Binding)</strong></p>
+                        <div class="code-box"><span class="comment">// Trigger when Enter key is pressed</span>
+                            nameField.addActionListener(e -> {
+                            System.out.println(<span class="string">"You typed: "</span> + nameField.getText());
+                            });
+                        </div>
+
+                        <p><strong>3. Real Project (Form Input)</strong></p>
+                        <div class="code-box"><span class="comment">// Used in a Login Form</span>
+                            JLabel lbl = <span class="keyword">new</span> JLabel(<span
+                                class="string">"Username:"</span>);
+                            JTextField userField = <span class="keyword">new</span> JTextField(<span
+                                class="string">15</span>);
+                            userField.setToolTipText(<span class="string">"Enter your username"</span>);
+
+                            panel.add(lbl);
+                            panel.add(userField);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <input type="text" class="swing-comp swing-field" value="Type here..." readonly>
+                    </div>
+                </div>
+
+                <!-- 2. Label -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Label</h3>
+                        <p><code>JLabel</code></p>
+                        <p>Displays text or images that cannot be edited.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic Label</span>
+                            JLabel label = <span class="keyword">new</span> JLabel(<span class="string">"Hello
+                                World"</span>);
+                            panel.add(label);
+                        </div>
+
+                        <p><strong>2. Interactivity (Dynamic Updates)</strong></p>
+                        <div class="code-box"><span class="comment">// Changing text dynamically</span>
+                            label.setText(<span class="string">"Status: Loading..."</span>);
+                            label.setForeground(Color.RED);
+                        </div>
+
+                        <p><strong>3. Real Project (Header)</strong></p>
+                        <div class="code-box"><span class="comment">// App Title Header</span>
+                            JLabel title = <span class="keyword">new</span> JLabel(<span
+                                class="string">"Dashboard"</span>);
+                            title.setFont(<span class="keyword">new</span> Font(<span class="string">"Arial"</span>,
+                            Font.BOLD, <span class="string">24</span>));
+                            title.setHorizontalAlignment(SwingConstants.CENTER);
+                            panel.add(title, BorderLayout.NORTH);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <span class="swing-comp" style="font-weight:bold; color:blue;">Username:</span>
+                    </div>
+                </div>
+
+                <!-- 3. Text Area -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>TextArea</h3>
+                        <p><code>JTextArea</code></p>
+                        <p>A multi-line text box for longer input.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic Area</span>
+                            JTextArea area = <span class="keyword">new</span> JTextArea(<span class="string">5</span>,
+                            <span class="string">20</span>);
+                            panel.add(area);
+                        </div>
+
+                        <p><strong>2. Interactivity (Appending)</strong></p>
+                        <div class="code-box"><span class="comment">// Adding text programmatically</span>
+                            area.append(<span class="string">"Log entry 1\n"</span>);
+                            area.append(<span class="string">"Log entry 2\n"</span>);
+                        </div>
+
+                        <p><strong>3. Real Project (Scrollable Log)</strong></p>
+                        <div class="code-box"><span class="comment">// Chat Box or Log Viewer</span>
+                            JTextArea chatLog = <span class="keyword">new</span> JTextArea(<span
+                                class="string">10</span>, <span class="string">30</span>);
+                            chatLog.setEditable(<span class="keyword">false</span>); <span class="comment">//
+                                Read-only</span>
+                            JScrollPane scroll = <span class="keyword">new</span> JScrollPane(chatLog);
+                            panel.add(scroll);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div class="swing-comp swing-field" style="width: 180px; height: 60px; white-space: pre-wrap;">
+                            Multi-line text
+                            goes here...</div>
+                    </div>
+                </div>
+
+                <!-- 4. Check Box -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>CheckBox</h3>
+                        <p><code>JCheckBox</code></p>
+                        <p>A toggle button for acting as a switch (on/off).</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic CheckBox</span>
+                            JCheckBox check = <span class="keyword">new</span> JCheckBox(<span class="string">"Enable
+                                Feature"</span>);
+                            panel.add(check);
+                        </div>
+
+                        <p><strong>2. Interactivity (State Check)</strong></p>
+                        <div class="code-box"><span class="comment">// Check status on click</span>
+                            check.addItemListener(e -> {
+                            <span class="keyword">if</span> (check.isSelected()) {
+                            System.out.println(<span class="string">"Feature Enabled!"</span>);
+                            }
+                            });
+                        </div>
+
+                        <p><strong>3. Real Project (Terms of Service)</strong></p>
+                        <div class="code-box"><span class="comment">// Terms & Conditions Check</span>
+                            JCheckBox termsBox = <span class="keyword">new</span> JCheckBox(<span class="string">"I
+                                accept the Terms & Conditions"</span>);
+                            JButton submitBtn = <span class="keyword">new</span> JButton(<span
+                                class="string">"Submit"</span>);
+                            submitBtn.setEnabled(<span class="keyword">false</span>); // Disabled by default
+
+                            termsBox.addActionListener(e -> {
+                            submitBtn.setEnabled(termsBox.isSelected());
+                            });
+
+                            panel.add(termsBox);
+                            panel.add(submitBtn);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div class="swing-comp swing-check checked">
+                            <span class="swing-check-box"></span> Bold
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. List -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>List</h3>
+                        <p><code>JList</code></p>
+                        <p>A scrollable list of items to select from.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic array list</span>
+                            String[] data = {<span class="string">"Apple"</span>, <span class="string">"Banana"</span>,
+                            <span class="string">"Orange"</span>};
+                            JList&lt;String&gt; list = <span class="keyword">new</span> JList&lt;&gt;(data);
+                            panel.add(list);
+                        </div>
+
+                        <p><strong>2. Interactivity (Selection Event)</strong></p>
+                        <div class="code-box"><span class="comment">// Get selected value</span>
+                            list.addListSelectionListener(e -> {
+                            <span class="keyword">if</span> (!e.getValueIsAdjusting()) {
+                            System.out.println(list.getSelectedValue());
+                            }
+                            });
+                        </div>
+
+                        <p><strong>3. Real Project (File Browser)</strong></p>
+                        <div class="code-box"><span class="comment">// Scrollable File List</span>
+                            DefaultListModel&lt;String&gt; model = <span class="keyword">new</span>
+                            DefaultListModel&lt;&gt;();
+                            model.addElement(<span class="string">"Report.pdf"</span>);
+                            model.addElement(<span class="string">"Image.png"</span>);
+
+                            JList&lt;String&gt; fileList = <span class="keyword">new</span> JList&lt;&gt;(model);
+                            JScrollPane scroll = <span class="keyword">new</span> JScrollPane(fileList);
+                            panel.add(scroll);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div class="swing-comp swing-list">
+                            <div class="swing-list-item">Red</div>
+                            <div class="swing-list-item selected">Green</div>
+                            <div class="swing-list-item">Blue</div>
+                            <div class="swing-list-item">Yellow</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Choice -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Choice</h3>
+                        <p><code>JComboBox</code></p>
+                        <p>A specific drop-down menu for selecting one value.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic Dropdown</span>
+                            String[] items = {<span class="string">"Small"</span>, <span class="string">"Medium"</span>,
+                            <span class="string">"Large"</span>};
+                            JComboBox&lt;String&gt; box = <span class="keyword">new</span> JComboBox&lt;&gt;(items);
+                            panel.add(box);
+                        </div>
+
+                        <p><strong>2. Interactivity (Get Choice)</strong></p>
+                        <div class="code-box"><span class="comment">// Handle dropdown selection</span>
+                            box.addActionListener(e -> {
+                            System.out.println(<span class="string">"Size: "</span> + box.getSelectedItem());
+                            });
+                        </div>
+
+                        <p><strong>3. Real Project (Theme Selector)</strong></p>
+                        <div class="code-box"><span class="comment">// Settings Menu</span>
+                            String[] themes = {<span class="string">"Light Mode"</span>, <span class="string">"Dark
+                                Mode"</span>};
+                            JComboBox&lt;String&gt; themeSelector = <span class="keyword">new</span>
+                            JComboBox&lt;&gt;(themes);
+
+                            themeSelector.addActionListener(e -> {
+                            <span class="keyword">if</span> (themeSelector.getSelectedIndex() == 0) {
+                            // setLightMode();
+                            }
+                            });
+                            panel.add(themeSelector);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div class="swing-comp swing-choice">Select Color</div>
+                    </div>
+                </div>
+
+                <!-- 7. Radio -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Radio Button</h3>
+                        <p><code>JRadioButton</code></p>
+                        <p>Allows selecting only one option from a group.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic Radio (Needs ButtonGroup!)</span>
+                            JRadioButton opt1 = <span class="keyword">new</span> JRadioButton(<span
+                                class="string">"Yes"</span>);
+                            JRadioButton opt2 = <span class="keyword">new</span> JRadioButton(<span
+                                class="string">"No"</span>);
+
+                            ButtonGroup group = <span class="keyword">new</span> ButtonGroup();
+                            group.add(opt1);
+                            group.add(opt2);
+
+                            panel.add(opt1); // Add buttons, NOT group
+                            panel.add(opt2);
+                        </div>
+
+                        <p><strong>2. Interactivity (Check Active)</strong></p>
+                        <div class="code-box"><span class="comment">// Check which one is picked</span>
+                            JButton checkBtn = <span class="keyword">new</span> JButton(<span
+                                class="string">"Check"</span>);
+                            checkBtn.addActionListener(e -> {
+                            <span class="keyword">if</span> (opt1.isSelected()) System.out.println(<span
+                                class="string">"Yes!"</span>);
+                            });
+                        </div>
+
+                        <p><strong>3. Real Project (Payment Method)</strong></p>
+                        <div class="code-box"><span class="comment">// Payment Options</span>
+                            JRadioButton card = <span class="keyword">new</span> JRadioButton(<span
+                                class="string">"Credit Card"</span>);
+                            JRadioButton paypal = <span class="keyword">new</span> JRadioButton(<span
+                                class="string">"PayPal"</span>);
+
+                            ButtonGroup payGroup = <span class="keyword">new</span> ButtonGroup();
+                            payGroup.add(card);
+                            payGroup.add(paypal);
+
+                            // Select default
+                            card.setSelected(<span class="keyword">true</span>);
+
+                            panel.add(card);
+                            panel.add(paypal);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div style="display:flex; gap:10px;">
+                            <div class="swing-comp swing-radio checked">
+                                <span class="swing-radio-circle"></span> Male
+                            </div>
+                            <div class="swing-comp swing-radio">
+                                <span class="swing-radio-circle"></span> Female
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Button -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Button</h3>
+                        <p><code>JButton</code> + <code>ActionEvent</code></p>
+                        <p>A clickable button that triggers an action.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic Button</span>
+                            JButton btn = <span class="keyword">new</span> JButton(<span class="string">"Save"</span>);
+                            panel.add(btn);
+                        </div>
+
+                        <p><strong>2. Interactivity (Click Action)</strong></p>
+                        <div class="code-box"><span class="comment">// Handle Click</span>
+                            btn.addActionListener(e -> {
+                            System.out.println(<span class="string">"Button Clicked!"</span>);
+                            });
+                        </div>
+
+                        <p><strong>3. Real Project (Dialog Trigger)</strong></p>
+                        <div class="code-box"><span class="comment">// Confirm Action</span>
+                            JButton deleteBtn = <span class="keyword">new</span> JButton(<span
+                                class="string">"Delete"</span>);
+                            deleteBtn.setForeground(Color.RED);
+
+                            deleteBtn.addActionListener(e -> {
+                            int choice = JOptionPane.showConfirmDialog(null, <span class="string">"Are you
+                                sure?"</span>);
+                            if (choice == JOptionPane.YES_OPTION) {
+                            System.out.println(<span class="string">"Deleted."</span>);
+                            }
+                            });
+                            panel.add(deleteBtn);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div class="swing-comp swing-btn">Save</div>
+                    </div>
+                </div>
+
+                <!-- 9. Scrollbar -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Scrollbar</h3>
+                        <p><code>JScrollBar</code></p>
+                        <p>Adds scroll capability to a container.</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic Scrollbar</span>
+                            JScrollBar bar = <span class="keyword">new</span> JScrollBar(JScrollBar.VERTICAL);
+                            panel.add(bar);
+                        </div>
+
+                        <p><strong>2. Interactivity (Value Change)</strong></p>
+                        <div class="code-box"><span class="comment">// Listen for scrolling</span>
+                            bar.addAdjustmentListener(e -> {
+                            System.out.println(<span class="string">"Value: "</span> + e.getValue());
+                            });
+                        </div>
+
+                        <p><strong>3. Real Project (Custom Scroll Pane)</strong></p>
+                        <div class="code-box"><span class="comment">// Custom Policy</span>
+                            JTextArea text = <span class="keyword">new</span> JTextArea(10, 20);
+                            JScrollPane pane = <span class="keyword">new</span> JScrollPane(text);
+
+                            // Always show vertical bar
+                            pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                            panel.add(pane);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div class="swing-comp swing-scrollbar-demo">
+                            <div class="swing-arrow">▲</div>
+                            <div class="swing-thumb"></div>
+                            <div class="swing-arrow" style="position:absolute; bottom:0;">▼</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Menu Bar -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Menu Bar</h3>
+                        <p><code>JMenuBar</code></p>
+                        <p>A top-level menu container (File, Edit, etc.).</p>
+                        <p><strong>1. Simple Initialize</strong></p>
+                        <div class="code-box"><span class="comment">// Basic Bar</span>
+                            JMenuBar bar = <span class="keyword">new</span> JMenuBar();
+                            JMenu file = <span class="keyword">new</span> JMenu(<span class="string">"File"</span>);
+                            bar.add(file);
+                            // frame.setJMenuBar(bar); // Add to Frame
+                        </div>
+
+                        <p><strong>2. Interactivity (Menu Item)</strong></p>
+                        <div class="code-box"><span class="comment">// Add Item Action</span>
+                            JMenuItem exitItem = <span class="keyword">new</span> JMenuItem(<span
+                                class="string">"Exit"</span>);
+                            exitItem.addActionListener(e -> System.exit(0));
+                            file.add(exitItem);
+                        </div>
+
+                        <p><strong>3. Real Project (Full Menu)</strong></p>
+                        <div class="code-box"><span class="comment">// Complete Menu System</span>
+                            JMenuBar menuBar = <span class="keyword">new</span> JMenuBar();
+
+                            JMenu fileMenu = <span class="keyword">new</span> JMenu(<span class="string">"File"</span>);
+                            JMenu editMenu = <span class="keyword">new</span> JMenu(<span class="string">"Edit"</span>);
+
+                            JMenuItem open = <span class="keyword">new</span> JMenuItem(<span
+                                class="string">"Open"</span>);
+                            JMenuItem save = <span class="keyword">new</span> JMenuItem(<span
+                                class="string">"Save"</span>);
+
+                            fileMenu.add(open);
+                            fileMenu.addSeparator(); // Line
+                            fileMenu.add(save);
+
+                            menuBar.add(fileMenu);
+                            menuBar.add(editMenu);
+
+                            // frame.setJMenuBar(menuBar);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <span class="visual-label">Java Look</span>
+                        <div class="swing-comp swing-menubar">
+                            <div class="swing-menuitem">File</div>
+                            <div class="swing-menuitem">Edit</div>
+                            <div class="swing-menuitem">Help</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ========================================================
+         SECTION 2: LAYOUT MANAGERS (Detailed Examples)
+         ======================================================== -->
+        <div id="layouts" class="section">
+            <div class="section-title">2. Layout Managers</div>
+            <p style="margin-bottom: 20px;">Detailed examples showing how to structure your UI containers.</p>
+
+            <div class="topic-grid">
+
+                <!-- 1. Border Layout -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Border Layout</h3>
+                        <p>Divides container into 5 regions: North, South, East, West, Center.</p>
+                        <div class="code-box"><span class="comment">// 1. Set Layout on Panel</span>
+                            panel.setLayout(<span class="keyword">new</span> BorderLayout(<span
+                                class="string">10</span>, <span class="string">10</span>)); <span class="comment">//
+                                gaps</span>
+
+                            <span class="comment">// 2. Add to specific zones</span>
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"North"</span>),
+                            BorderLayout.NORTH);
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"South"</span>),
+                            BorderLayout.SOUTH);
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"East"</span>),
+                            BorderLayout.EAST);
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"West"</span>),
+                            BorderLayout.WEST);
+
+                            <span class="comment">// 3. Center takes remaining space</span>
+                            panel.add(<span class="keyword">new</span> JTextArea(), BorderLayout.CENTER);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <div class="layout-container layout-border">
+                            <div class="layout-comp north">N</div>
+                            <div class="layout-comp south">S</div>
+                            <div class="layout-comp east">E</div>
+                            <div class="layout-comp west">W</div>
+                            <div class="layout-comp center">Center</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Flow Layout -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Flow Layout</h3>
+                        <p>Arranges components in a line, wrapping to the next if needed.</p>
+                        <div class="code-box"><span class="comment">// 1. Set Layout (Left Aligned)</span>
+                            panel.setLayout(<span class="keyword">new</span> FlowLayout(FlowLayout.LEFT));
+
+                            <span class="comment">// 2. Add components sequentially</span>
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"Button 1"</span>));
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"Button 2"</span>));
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"Button 3"</span>));
+
+                            <span class="comment">// They will wrap to next line if width runs out</span>
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <div class="layout-container layout-flow">
+                            <div class="layout-comp">1</div>
+                            <div class="layout-comp">2</div>
+                            <div class="layout-comp">3</div>
+                            <div class="layout-comp">4</div>
+                            <div class="layout-comp">5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Grid Layout -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Grid Layout</h3>
+                        <p>Arranges components in a grid of equal-sized cells.</p>
+                        <div class="code-box"><span class="comment">// 1. Create Grid: 2 Rows, 2 Cols, 10px Gap</span>
+                            panel.setLayout(<span class="keyword">new</span> GridLayout(<span class="string">2</span>,
+                            <span class="string">2</span>, <span class="string">10</span>, <span
+                                class="string">10</span>));
+
+                            <span class="comment">// 2. Add components (Fills row by row)</span>
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"Cells match
+                                size"</span>));
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"2"</span>));
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"3"</span>));
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"4"</span>));
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <div class="layout-container layout-grid">
+                            <div class="layout-comp">1</div>
+                            <div class="layout-comp">2</div>
+                            <div class="layout-comp">3</div>
+                            <div class="layout-comp">4</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Card Layout -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Card Layout</h3>
+                        <p>Shows one component at a time, like a stack of cards.</p>
+                        <div class="code-box"><span class="comment">// 1. Create Container & Layout</span>
+                            JPanel cards = <span class="keyword">new</span> JPanel(<span class="keyword">new</span>
+                            CardLayout());
+
+                            <span class="comment">// 2. Add panels with unique IDs (Strings)</span>
+                            cards.add(p1, <span class="string">"Screen1"</span>);
+                            cards.add(p2, <span class="string">"Screen2"</span>);
+
+                            <span class="comment">// 3. Switch between cards</span>
+                            CardLayout cl = (CardLayout)(cards.getLayout());
+                            cl.show(cards, <span class="string">"Screen2"</span>);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <div class="layout-container layout-card">
+                            <div class="layout-comp">Visible Card</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Box Layout -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Box Layout</h3>
+                        <p>Stacks components in a single column or row.</p>
+                        <div class="code-box"><span class="comment">// 1. Set Layout (Vertical Axis)</span>
+                            panel.setLayout(<span class="keyword">new</span> BoxLayout(panel, BoxLayout.Y_AXIS));
+
+                            <span class="comment">// 2. Add components (Stacks top to bottom)</span>
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"Top"</span>));
+                            panel.add(Box.createVerticalStrut(<span class="string">10</span>)); <span class="comment">//
+                                Spacer</span>
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"Middle"</span>));
+                            panel.add(<span class="keyword">new</span> JButton(<span class="string">"Bottom"</span>));
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <div class="layout-container layout-box">
+                            <div class="layout-comp">Row 1</div>
+                            <div class="layout-comp">Row 2</div>
+                            <div class="layout-comp">Row 3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Spring Layout -->
+                <div class="component-card">
+                    <div class="component-info">
+                        <h3>Spring Layout</h3>
+                        <p>A flexible layout based on constraints (springs) between edges.</p>
+                        <div class="code-box"><span class="comment">// Advanced: Define relative constraints</span>
+                            SpringLayout layout = <span class="keyword">new</span> SpringLayout();
+                            panel.setLayout(layout);
+
+                            <span class="comment">// Constrain left of B to right of A</span>
+                            layout.putConstraint(SpringLayout.WEST, btnB,
+                            <span class="string">5</span>,
+                            SpringLayout.EAST, btnA);
+                        </div>
+                    </div>
+                    <div class="visual-preview">
+                        <div class="layout-container layout-spring">
+                            <div class="swing-comp swing-btn c1">A</div>
+                            <div class="swing-comp swing-btn c2">B</div>
+                            <div
+                                style="position:absolute; top:25px; left:70px; width:110px; border-top:1px dotted red;">
+                            </div>
+                            <div style="position:absolute; top:25px; left:125px; font-size:9px; color:red;">spring</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================================
+         SECTION 3: PROJECT (Preserved)
+         ======================================================== -->
+        <div id="project" class="section">
+            <div class="section-title">3. Mini Project</div>
+            <p>A complete Student Registration app using multiple components.</p>
+
+            <div class="code-box">
+                <pre><code>import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+
+public class StudentRegApp {
+    private JFrame frame;
+    private JTextField nameField;
+    private JTextField idField;
+    private DefaultTableModel tableModel;
+    private JTable studentTable;
+
+    public StudentRegApp() {
+        // 1. Create the Frame
+        frame = new JFrame("Student Registration");
+        frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null); // Center on screen
+
+        // 2. Main Layout
+        frame.setLayout(new BorderLayout(10, 10));
+
+        // --- TOP PANEL: INPUTS ---
+        JPanel inputPanel = new JPanel(new GridLayout(3, 2, 5, 5));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        inputPanel.add(new JLabel("Student Name:"));
+        nameField = new JTextField();
+        inputPanel.add(nameField);
+
+        inputPanel.add(new JLabel("Student ID:"));
+        idField = new JTextField();
+        inputPanel.add(idField);
+
+        JButton addButton = new JButton("Add Student");
+        addButton.addActionListener(e -> addStudent());
+        inputPanel.add(new JLabel("")); // Spacer
+        inputPanel.add(addButton);
+
+        frame.add(inputPanel, BorderLayout.NORTH);
+
+        // --- CENTER PANEL: TABLE ---
+        String[] columns = {"ID", "Name"};
+        tableModel = new DefaultTableModel(columns, 0);
+        studentTable = new JTable(tableModel);
+        
+        // Wrap table in ScrollPane
+        JScrollPane scrollPane = new JScrollPane(studentTable);
+        frame.add(scrollPane, BorderLayout.CENTER);
+
+        // --- BOTTOM PANEL: STATUS ---
+        JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        statusPanel.add(new JLabel("Ready"));
+        frame.add(statusPanel, BorderLayout.SOUTH);
+
+        // 3. Show Frame
+        frame.setVisible(true);
+    }
+
+    private void addStudent() {
+        String name = nameField.getText().trim();
+        String id = idField.getText().trim();
+
+        // Validation
+        if (name.isEmpty() || id.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please fill all fields.", 
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Add to model
+        tableModel.addRow(new Object[]{id, name});
+
+        // Clear inputs
+        nameField.setText("");
+        idField.setText("");
+        nameField.requestFocus();
+    }
+
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ignored){}
+
+        SwingUtilities.invokeLater(() -> {
+            new StudentRegApp();
+        });
+    }
+}</code></pre>
+            </div>
+        </div>
+
+        <!-- ========================================================
+         SECTION 4: EXTRAS
+         ======================================================== -->
+        <div id="extras" class="section">
+            <div class="section-title">4. Knowledge Check</div>
+
+            <details style="background:#fff; padding:15px; border:1px solid #ccc; margin-bottom:10px;">
+                <summary>Which layout is default for JFrame?</summary>
+                <p>BorderLayout.</p>
+            </details>
+
+            <details style="background:#fff; padding:15px; border:1px solid #ccc; margin-bottom:10px;">
+                <summary>What component is used for a dropdown list?</summary>
+                <p>JComboBox (often referred to as Choice in older frameworks).</p>
+            </details>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
